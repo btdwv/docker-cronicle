@@ -12,7 +12,8 @@ RUN \
     mkdir -p /opt/cronicle && curl -sSL https://github.com/jhuckaby/Cronicle/archive/v${VERSION}.tar.gz | tar xz --strip-components=1 -C /opt/cronicle && \
     cd /opt/cronicle && npm install && \
     node bin/build.js dist
-    
+
+COPY root/ /
     
 EXPOSE 3012
 
