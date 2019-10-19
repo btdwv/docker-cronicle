@@ -21,3 +21,10 @@ fi
 chown abc:abc -R /app /config
 
 printf "$DATA_DIR" > /var/run/s6/container_environment/CRONICLE_Storage__Filesystem__base_dir
+
+
+#for i in `env | grep CRONICLE_` ; do 
+#  KEY=${i%=*};
+#  VAL=${i#*=};
+#  printf "$VAL" > /var/run/s6/container_environment/$KEY ;
+#done
