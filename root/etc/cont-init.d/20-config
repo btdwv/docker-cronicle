@@ -8,6 +8,7 @@ mkdir -p $DATA_DIR $LOGS_DIR $PLUGINS_DIR
 
 export CRONICLE_foreground=1
 export CRONICLE_Storage__Filesystem__base_dir=$DATA_DIR
+export CRONICLE_log_dir=$LOGS_DIR
 export CRONICLE_echo=${CRONICLE_echo:-1}
 
 if [ ! "$(ls -A $DATA_DIR)" ]; then
