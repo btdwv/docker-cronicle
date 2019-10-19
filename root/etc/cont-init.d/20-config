@@ -16,4 +16,4 @@ if [ ! "$(ls -A $DATA_DIR)" ]; then
     echo "$(date -I'seconds') INFO done"
 fi
 
-chown abc:abc $DATA_DIR $LOGS_DIR $PLUGINS_DIR
+chown abc:abc /opt/cronicle
