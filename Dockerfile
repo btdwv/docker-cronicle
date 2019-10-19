@@ -9,12 +9,12 @@ ENV VERSION 0.8.32
 
 RUN \
     apk add -U --no-cache docker-cli tini curl jq npm tzdata procps && \
-    mkdir -p /opt/cronicle && curl -sSL https://github.com/jhuckaby/Cronicle/archive/v${VERSION}.tar.gz | tar xz --strip-components=1 -C /opt/cronicle && \
-    cd /opt/cronicle && npm install && \
+    curl -sSL https://github.com/jhuckaby/Cronicle/archive/v${VERSION}.tar.gz | tar xz --strip-components=1 -C /app/ && \
+    cd /app/ && npm install && \
     node bin/build.js dist
 
 COPY root/ /
     
 EXPOSE 3012
 
-VOLUME ["/opt/cronicle/data", "/opt/cronicle/logs", "/opt/cronicle/plugins"]
+VOLUME ["/config/data", "/config/logs", "/config/plugins"]
