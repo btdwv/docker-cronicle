@@ -20,9 +20,11 @@ docker run -d \
 lukasmrtvy/lsiobase-cronicle
 ```
 
-# optional variables
-- DOCKER_HOST
-- TZ
+# variables
+- DOCKER_HOST ( Optional )
+- TZ ( Optional, Default: UTC )
+- PUID
+- PGID
 - https://github.com/jhuckaby/Cronicle#environment-variables
 
 
