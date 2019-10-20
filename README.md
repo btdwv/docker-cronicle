@@ -41,7 +41,8 @@ lukasmrtvy/lsiobase-cronicle
 - jq
 - curl
 
-# docker proxy
+# job examples - dind:
+## Docker socket proxy for usage in Cronicle
 ```
 docker run -d \
     --privileged \
@@ -53,8 +54,11 @@ docker run -d \
     -e POST=1 \
     tecnativa/docker-socket-proxy
 ```
++
+## Cronicle
+`-e DOCKER_HOST=dockerproxy:2375`
 
-# ACME CF DNS-Challenge DIND - docker-cli
+### ACME CF DNS-Challenge DIND - docker-cli
 ```
 docker run --rm \
 -e CLOUDFLARE_EMAIL=foobar@example.com \
@@ -63,12 +67,12 @@ docker run --rm \
 goacme/lego --accept-tos --email foobar@example.com --domains foobar.example.com --dns cloudflare  run
 ```
 
-# list containers -> job example - curl
+### list containers -> job example - curl
 ```
 curl -s http://proxy:2375/containers/json | jq
 ```
 
-# run container from Cronicle ( didn ) -> job example - curl
+### run container from Cronicle ( didn ) -> job example - curl
 ```
 curl - s \
   "http://proxy:2375/containers/create?name=foobar" \
