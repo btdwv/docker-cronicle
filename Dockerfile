@@ -11,7 +11,8 @@ RUN \
     apk add -U --no-cache docker-cli tini curl jq npm tzdata procps && \
     curl -sSL https://github.com/jhuckaby/Cronicle/archive/v${VERSION}.tar.gz | tar xz --strip-components=1 -C /app/ && \
     cd /app/ && npm install && \
-    node bin/build.js dist
+    node bin/build.js dist && \
+    chown abc:abc -R /app 
 
 COPY root/ /
     
