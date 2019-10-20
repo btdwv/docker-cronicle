@@ -52,12 +52,21 @@ docker run -d \
     tecnativa/docker-socket-proxy
 ```
 
-# list containers -> job example
+# ACME CF DNS-Challenge DIND - docker-cli
+```
+docker run --rm \
+-e CLOUDFLARE_EMAIL=foobar@example.com \
+-e CLOUDFLARE_API_KEY=xxxxx \
+-v /tmp/.lego/:/.lego/ \
+goacme/lego --accept-tos --email foobar@example.com --domains foobar.example.com --dns cloudflare  run
+```
+
+# list containers -> job example - curl
 ```
 curl -s http://proxy:2375/containers/json | jq
 ```
 
-# run container from Cronicle ( didn ) -> job example
+# run container from Cronicle ( didn ) -> job example - curl
 ```
 curl - s \
   "http://proxy:2375/containers/create?name=foobar" \
@@ -65,4 +74,3 @@ curl - s \
   -H "Content-Type: application/json" \
   -d '{ "Image": "alpine:latest", "Cmd": [ "echo", "hello world" ] }' | jq '.'
 ```
-# docker-cli
