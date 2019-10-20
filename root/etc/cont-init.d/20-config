@@ -22,3 +22,7 @@ fi
 chown abc:abc -R /config
 
 unset IFS; for var in ${!CRONICLE_*}; do printf '%s' "${!var}" > "/var/run/s6/container_environment/$var"; done
+
+if [ -n "$DOCKER_HOST" ]; then
+  printf '%s' "${DOCKER_HOST}" > "/var/run/s6/container_environment/DOCKER_HOST";
+fi
