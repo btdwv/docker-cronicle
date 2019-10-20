@@ -1,15 +1,14 @@
 #!/usr/bin/with-contenv bash
 
 DATA_DIR=/config/data/
-#LOGS_DIR=/config/logs/
-#PLUGINS_DIR=/config/plugins/
+LOGS_DIR=/config/logs/
+PLUGINS_DIR=/config/plugins/
 
-#mkdir -p $DATA_DIR $LOGS_DIR $PLUGINS_DIR
-mkdir -p $DATA_DIR
+mkdir -p $DATA_DIR $LOGS_DIR $PLUGINS_DIR
 
 export CRONICLE_foreground=1
 export CRONICLE_Storage__Filesystem__base_dir=$DATA_DIR
-#export CRONICLE_log_dir=$LOGS_DIR
+export CRONICLE_log_dir=$LOGS_DIR
 export CRONICLE_echo=${CRONICLE_echo:-1}
 
 if [ ! "$(ls -A $DATA_DIR)" ]; then
@@ -18,14 +17,6 @@ if [ ! "$(ls -A $DATA_DIR)" ]; then
     echo "$(date -I'seconds') INFO done"
 fi
 
-chown abc:abc -R /app /config
+chown abc:abc -R /config
 
-#printf "$DATA_DIR" > /var/run/s6/container_environment/CRONICLE_Storage__Filesystem__base_dir
-
-unset IFS; for var in ${!CRONICLE_*}; do printf '%s\n' "${!var}" > "/var/run/s6/container_environment/$var"; done
-
-#for i in `env | grep CRONICLE_` ; do 
-#  KEY=${i%=*};
-#  VAL=${i#*=};
-#  printf "$VAL" > /var/run/s6/container_environment/$KEY ;
-#done
+unset IFS; for var in ${!CRONICLE_*}; do printf '%s' "${!var}" > "/var/run/s6/container_environment/$var"; done
