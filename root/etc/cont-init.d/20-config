@@ -1,5 +1,7 @@
 #!/usr/bin/with-contenv bash
 
+export S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+
 HOME_DIR=/app/
 DATA_DIR=/config/data/
 LOGS_DIR=/config/logs/
