@@ -10,14 +10,22 @@ ENV VERSION 0.8.45
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS 2
 
 RUN \
-    apk add -U --no-cache docker-cli tini curl jq npm tzdata procps python py-pip && \
-    pip install requests && \
-    curl -sSL https://github.com/jhuckaby/Cronicle/archive/v${VERSION}.tar.gz | tar xz --strip-components=1 -C /app/ && \
+echo "**** install runtime packages ****" && \
+apk add -U --no-cache docker-cli tini curl jq npm tzdata procps python2 py2-pip && \
+echo "**** install pip packages ****" && \
+pip install --no-cache-dir -U pip && \
+pip install --no-cache-dir -U requests && \
+echo "**** install Cronicle ****" && \
+curl -sSL https://github.com/jhuckaby/Cronicle/archive/v${VERSION}.tar.gz | tar xz --strip-components=1 -C /app/ && \
     cd /app/ && npm install && \
-    node bin/build.js dist 
-    
+    node bin/build.js dist \
+echo "**** clean up ****" && \
+rm -rf \
+    /root/.cache \
+    /tmp/*
+
 COPY root/ /
-    
+
 EXPOSE 3012
 
 VOLUME ["/config/data", "/config/logs", "/config/plugins"]
