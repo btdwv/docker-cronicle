@@ -28,4 +28,4 @@ COPY root/ /
 
 EXPOSE 3012
 
-VOLUME ["/config/data", "/config/logs", "/config/plugins"]
+VOLUME ["/config/data", "/config/logs"]
