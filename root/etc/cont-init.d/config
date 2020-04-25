@@ -4,6 +4,7 @@ HOME_DIR=/opt/cronicle/
 BIN_DIR=/opt/cronicle/bin/
 DATA_DIR=/opt/cronicle/data/
 LOGS_DIR=/opt/cronicle/logs/
+QUEUE_DIR=/opt/cronicle/queue/
 
 mkdir -p $DATA_DIR $LOGS_DIR
 
@@ -21,6 +22,7 @@ fi
 
 chown abc:abc -R ${DATA_DIR}
 chown abc:abc -R ${LOGS_DIR}
+chown abc:abc -R ${QUEUE_DIR}
 
 unset IFS; for var in ${!CRONICLE_*}; do printf '%s' "${!var}" > "/var/run/s6/container_environment/$var"; done
 
