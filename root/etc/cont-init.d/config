@@ -1,8 +1,9 @@
 #!/usr/bin/with-contenv bash
 
-HOME_DIR=/app/
-DATA_DIR=/config/data/
-LOGS_DIR=/config/logs/
+HOME_DIR=/opt/cronicle/
+BIN_DIR=/opt/cronicle/bin/
+DATA_DIR=/opt/cronicle/data/
+LOGS_DIR=/opt/cronicle/logs/
 
 mkdir -p $DATA_DIR $LOGS_DIR
 
@@ -10,15 +11,16 @@ export CRONICLE_foreground=1
 export CRONICLE_Storage__Filesystem__base_dir=$DATA_DIR
 export CRONICLE_log_dir=$LOGS_DIR
 export CRONICLE_echo=${CRONICLE_echo:-1}
-export CRONICLE_pid_file=$HOME_DIR/cronicle.pid
+#export CRONICLE_pid_file=$HOME_DIR/cronicle.pid
 
 if [ ! "$(ls -A $DATA_DIR)" ]; then
     echo "$(date -I'seconds') INFO $DATA_DIR is empty, running setup ..."
-    /app/bin/control.sh  setup
+    ${BIN_DIR}/control.sh setup
     echo "$(date -I'seconds') INFO done"
 fi
 
-chown abc:abc -R /config
+chown abc:abc -R ${DATA_DIR}
+chown abc:abc -R ${LOGS_DIR}
 
 unset IFS; for var in ${!CRONICLE_*}; do printf '%s' "${!var}" > "/var/run/s6/container_environment/$var"; done
 
