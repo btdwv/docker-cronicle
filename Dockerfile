@@ -9,6 +9,8 @@ ENV VERSION 0.8.46
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS 2
 
+WORKDIR    /opt/cronicle/
+
 RUN \
 echo "**** install runtime packages ****" && \
 apk add -U --no-cache curl npm tzdata python2 py2-pip && \
@@ -16,10 +18,11 @@ echo "**** install pip packages ****" && \
 pip install --no-cache-dir -U pip && \
 pip install --no-cache-dir -U requests && \
 echo "**** install Cronicle ****" && \
-curl -s https://raw.githubusercontent.com/jhuckaby/Cronicle/master/bin/install.js | node \
+LOCATION=$(curl -s https://api.github.com/repos/jhuckaby/Cronicle/releases/latest | grep "tag_name" | awk '{print "https://github.com/jhuckaby/Cronicle/archive/" substr($2, 2, length($2)-3) ".tar.gz"}') && curl -L $LOCATION | tar zxvf - --strip-components 1 && \
+npm install && \
+node bin/build.js dist && \
 echo "**** clean up ****" && \
 rm -rf \
-    install.js \
     /root/.cache \
     /tmp/*
 
