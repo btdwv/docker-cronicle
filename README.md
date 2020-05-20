@@ -1,4 +1,4 @@
-# lsiobase-cronicle
+# docker-cronicle
 
 ENV variables: https://github.com/jhuckaby/Cronicle#environment-variables
 
@@ -8,16 +8,16 @@ docker run -d \
 --hostname cronicle.example.com \
 --restart unless-stopped \
 --network private-network \
--e TZ=Europe/Prague \
+-e TZ=Asia/Shanghai \
 -e CRONICLE_base_app_url='http://cronicle.example.com' \
 -e CRONICLE_client__custom_live_log_socket_url='http://cronicle.example.com' \
 -e CRONICLE_master_ping_timeout=5 \
 -e PUID=1000 \
 -e PGID=1000 \
--v /data/docker-data/cronicle/data:/config/data \
--v /data/docker-data/cronicle/plugins:/config/plugins \
+-v /data/docker-data/cronicle/data:/opt/cronicle/data \
+-v /data/docker-data/cronicle/logs:/opt/cronicle/logs \
 -p 3012:3012 \
-lukasmrtvy/lsiobase-cronicle
+btdwv/cronicle
 ```
 
 # variables
@@ -36,7 +36,7 @@ lukasmrtvy/lsiobase-cronicle
 ```
 
 # batteries included
-- docker-cli
+- python2
 - bash
 - jq
 - curl
