@@ -36,7 +36,7 @@ btdwv/cronicle
 ```
 
 # batteries included
-- python2
+- python3
 - bash
 - jq
 - curl
