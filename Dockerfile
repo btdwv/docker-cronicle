@@ -13,10 +13,10 @@ WORKDIR    /opt/cronicle/
 
 RUN \
 echo "**** install runtime packages ****" && \
-apk add -U --no-cache curl npm tzdata python2 py2-pip && \
+apk add -U --no-cache curl npm tzdata python3 py3-pip && \
 echo "**** install pip packages ****" && \
-pip install --no-cache-dir -U pip && \
-pip install --no-cache-dir -U requests && \
+pip3 install --no-cache-dir -U pip && \
+pip3 install --no-cache-dir -U requests && \
 echo "**** install Cronicle ****" && \
 LOCATION=$(curl -s https://api.github.com/repos/jhuckaby/Cronicle/releases/latest | grep "tag_name" | awk '{print "https://github.com/jhuckaby/Cronicle/archive/" substr($2, 2, length($2)-3) ".tar.gz"}') && curl -L $LOCATION | tar zxvf - --strip-components 1 && \
 npm install && \
