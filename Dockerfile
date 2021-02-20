@@ -1,4 +1,4 @@
-FROM lsiobase/alpine:latest
+FROM lsiobase/alpine:3.13
 
 ARG BUILD_DATE
 ARG VERSION
