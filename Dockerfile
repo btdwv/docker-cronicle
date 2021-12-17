@@ -1,11 +1,11 @@
-FROM lsiobase/alpine:3.14
+FROM lsiobase/alpine:3.15
 
 ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer=""
 
-#ENV VERSION 0.8.61
+#ENV VERSION 0.9.0
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS 2
 
