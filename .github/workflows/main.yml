@@ -31,4 +31,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/cronicle:0.9.0
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/cronicle:latest
