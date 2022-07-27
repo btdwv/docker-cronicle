@@ -13,7 +13,7 @@ WORKDIR    /opt/cronicle/
 
 RUN \
 echo "**** install runtime packages ****" && \
-apk add -U --no-cache curl npm tzdata python3 py3-pip build-base libffi-dev python3-dev && \
+apk add -U --no-cache curl npm tzdata python3 py3-pip build-base libffi-dev python3-dev jq && \
 echo "**** install pip packages ****" && \
 pip3 install --no-cache-dir -U pip      && \
 pip3 install --no-cache-dir -U requests && \
