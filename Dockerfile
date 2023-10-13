@@ -5,7 +5,7 @@ ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer=""
 
-#ENV VERSION 0.9.35
+#ENV VERSION 0.9.36
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS 2
 
